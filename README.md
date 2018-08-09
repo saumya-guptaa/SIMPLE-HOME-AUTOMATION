@@ -1,2 +1,2 @@
 # SIMPLE-HOME-AUTOMATION
-Arduino based siple home automation using temperature sensor
+lights controlled by temperature sensor
