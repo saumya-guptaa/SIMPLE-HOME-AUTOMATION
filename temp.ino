@@ -20,7 +20,7 @@ float temp;
 float pretemp = 0;
 
 // Initialize DHT sensor.
-DHT dht1(DHTPin1, DHTTYPE);
+DHT dht1(DHTPin2, DHTTYPE);
 
 static char celsiusTemp1[7];
 
@@ -30,9 +30,9 @@ void CheckWiFiConnectivity()
     {
       for(int i=0; i < 10; i++)
       {
-        digitalWrite(LED0, !HIGH);
+        digitalWrite(LED0, HIGH);
         delay(250);
-        digitalWrite(LED0, !LOW);
+        digitalWrite(LED0, LOW);
         delay(250);
         Serial.print(".");
       }
@@ -71,8 +71,7 @@ void query(){
   else if(stat == 1)
     s = "{\"fans\" : false,";
   
-  s += String("\"location_id\": \"GH1 Roomno 202b\"") + String(",");
-  s += String("\"temperature\":") + String(temp) +String("}");
+  s += String("\"temperature\":") + String(temp);
   server.send(200,"text/plain",s);
   
 }
@@ -80,8 +79,6 @@ void query(){
 void setup() {
   Serial.begin(115200);
   delay(10);
-  pinMode(sensor1, INPUT); // declare sensor as input
-  
 
   dht1.begin();
 
